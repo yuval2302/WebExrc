@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+}
+
+#header {
+    padding: 0.2%;
+    background-color: #0a64eb;
+}
+
+a{
+    text-decoration: none;
+}
+
+#logoImg {
+    width: 30px;
+}
+
+.vertivalMid {
+    vertical-align: middle;
+    color: white;
+    text-shadow: 1px 1px 1px #000;
+}
+
+
+.logoNav {
+    display: inline-block;
+    padding: 5px;
+    color: white;
+    font-size: 16px;
+}
+
+.logoNav:hover {
+    background-color: #77a1e0;
+}
+
+.rightHeader {
+    float: right;
+}
+
+.tweet-text-input {
+    width: 70%;
+    height: 60px;
+}
+
+.tweetBody {
+    width: 75%;
+    margin: 1% auto;
+    display: block;
+}
+
+.tweet-avatar {
+    display: inline-block;
+    vertical-align: top;
+    font-family: Arial;
+    font-style: italic;
+}
+
+.tweets-section {
+    padding-top: 10px;
+    height: 25px;
+    width: 250px;
+    font-size: 5px;
+    font-family: Verdana;
+}
+
+.tweet-user {
+    height: 25px;
+    width: 250px;
+    display: inline-block;
+}
+
+
