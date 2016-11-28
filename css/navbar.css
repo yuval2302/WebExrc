@@ -1,0 +1,49 @@
+#header {
+    height: 40px;
+    padding-right: 10px;
+    line-height: 35px;
+    background-color: #0a64eb;
+}
+
+a{
+    text-decoration: none;
+}
+
+#logoImg {
+    width: 30px;
+}
+
+.vertivalMid {
+    vertical-align: middle;
+    color: white;
+    text-shadow: 1px 1px 1px #000;
+}
+
+
+.logoNav {
+    display: inline-block;
+    color: white;
+    font-size: 87%;
+    font-family: Arial, sans-serif;
+    height: 100%; padding-right: 1.2%;
+}
+
+.logoNav:hover {
+    background-color: #77a1e0;
+}
+
+.left-header {
+    float: left;
+    height: 100%;
+    display: inline-block;
+    width: 20%;
+}
+
+#app-name {
+    font-size: 110%;
+}
+
+.rightHeader {
+    float: right;
+    display: inline-block;
+}
