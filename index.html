@@ -3,85 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <title>OfekTwitter</title>
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link rel="stylesheet" type="text/css" href="css/navbar.css.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/users.css">
+    <link rel="stylesheet" type="text/css" href="css/navbar.css">
 </head>
 <body>
-<div id="header">
-    <div class="logoNav">
-        <img src="images/ofek.png" class="vertivalMid" id="logoImg"/>
-    </div>
-    <div class="logoNav">
-        <a href="index.html" class="vertivalMid">OfekTwitter</a>
+    <nav class="navbar" id="header">
+        <nav class="container">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="index.html"><img src="images/ofek.png" id="logo-img"/> OfekTwitter</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="users.html">Users</a>
+                </li>
+                <li>
+                    <a href="index.html">Sign in</a>
+                </li>
+                <li>
+                    <a href="index.html">Sign up</a>
+                </li>
+            </ul>
+        </nav>
+    </nav>
+
+<div class="container">
+    <div class="row">
+        <textarea placeholder="tweet text..." rows="3" class="form-control"></textarea>
+            <button class="btn btn-primary pull-right">publish</button>
     </div>
 
-    <div class="logoNav rightHeader">
-        <a class="vertivalMid" href="index.html">Sign in</a>
-    </div>
-    <div class="logoNav rightHeader">
-        <a class="vertivalMid" href="index.html">Sign up</a>
-    </div>
-    <div class="logoNav rightHeader">
-        <a class="vertivalMid" href="users.html">Users</a>
-    </div>
-</div>
-
-<div class="tweetBody">
-    <div>
-        <input type="textarea" placeholder="tweet text..." wrap="off" class="tweet-text-input">
-        <button id = "publish-button">publish</button>
-    </div>
     <section class="tweets-section">
-        <div class="inner-section">
-            <div class="tweet-avatar">
-                <img src="images/useravatar.png" class="avatar-image"/>
-            </div>
-            <div class="tweet-user">
-                <b>James Bond says:</b>
-                </br>
-                Blabla bla...
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object" src="images/useravatar.png">
+                    </div>
+                    <div class="media-body">
+                        <b class="media-heading">James Bond says:</b>
+                        <br/>
+                        <span>Blabla bla...</span>
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object" src="images/useravatar.png">
+                    </div>
+                    <div class="media-body">
+                        <b class="media-heading">James Bond says:</b>
+                        <br/>
+                        <span>Bond, James bond</span>
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object" src="images/useravatar.png">
+                    </div>
+                    <div class="media-body">
+                        <b class="media-heading">Albert Einstein says:</b>
+                        <br/>
+                        <span>E = mc^2</span>
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object" src="images/useravatar.png">
+                    </div>
+                    <div class="media-body">
+                        <b class="media-heading">Bill Gates says:</b>
+                        <br/>
+                        <span>I think 64 bytes should be enough for everyone</span>
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object" src="images/useravatar.png">
+                    </div>
+                    <div class="media-body">
+                        <b class="media-heading">Frodo says:</b>
+                        <br/>
+                        <span>My Precious</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="inner-section">
-            <div class="tweet-avatar">
-                <img src="images/useravatar.png" class="avatar-image"/>
-            </div>
-            <div class="tweet-user">
-                <b>i'm James Bond says:</b>
-                </br>
-                Bond, James bond
-            </div>
-        </div>
-        <div class="inner-section">
-            <div class="tweet-avatar">
-                <img src="images/useravatar.png" class="avatar-image"/>
-            </div>
-            <div class="tweet-user">
-                <b>Albert Einstein says:</b>
-                </br>
-                E = mc^2
-            </div>
-        </div>
-        <div class="inner-section">
-            <div class="tweet-avatar">
-                <img src="images/useravatar.png" class="avatar-image"/>
-            </div>
-            <div class="tweet-user">
-                <b>Bill Gates says:</b>
-                </br>
-                I think 64 bytes should be enough for everyone
-            </div>
-        </div>
-        <div class="inner-section">
-            <div class="tweet-avatar">
-                <img src="images/useravatar.png" class="avatar-image"/>
-            </div>
-            <div class="tweet-user">
-                <b>Frodo says:</b>
-                </br>
-                My Precious
-            </div>
-        </div>
+
     </section>
 </div>
 </body>

@@ -1,49 +1,27 @@
+
 #header {
-    height: 40px;
-    padding-right: 10px;
-    line-height: 35px;
+    border-radius: 0;
     background-color: #0a64eb;
 }
 
-a{
+#header a {
     text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    font-family: sans-serif;
 }
 
-#logoImg {
-    width: 30px;
+#header a:hover {
+    background-color: transparent !important;
+    color: #e1e1e1 !important
 }
 
-.vertivalMid {
-    vertical-align: middle;
-    color: white;
-    text-shadow: 1px 1px 1px #000;
+#logo-name {
+    font-size: 17px !important;
+    font-family: sans-serif;
+
 }
 
-
-.logoNav {
-    display: inline-block;
-    color: white;
-    font-size: 87%;
-    font-family: Arial, sans-serif;
-    height: 100%; padding-right: 1.2%;
-}
-
-.logoNav:hover {
-    background-color: #77a1e0;
-}
-
-.left-header {
-    float: left;
-    height: 100%;
-    display: inline-block;
-    width: 20%;
-}
-
-#app-name {
-    font-size: 110%;
-}
-
-.rightHeader {
-    float: right;
-    display: inline-block;
+#logo-img {
+    height: 22px;
 }

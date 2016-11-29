@@ -5,145 +5,188 @@
     <title>OfekTwitter | Users</title>
     <link rel="stylesheet" type="text/css" href="css/users.css">
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
 </head>
 <body>
-<div id="header">
-    <div class="left-header">
-        <div class="logoNav">
-            <img src="images/ofek.png" class="vertivalMid" id="logoImg"/>
+
+<nav class="navbar" id="header">
+    <nav class="container">
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="index.html" id="logo-name"><img src="images/ofek.png" id="logo-img"/> OfekTwitter</a>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="users.html">Users</a>
+            </li>
+            <li>
+                <a href="index.html">Sign in</a>
+            </li>
+            <li>
+                <a href="index.html">Sign up</a>
+            </li>
+        </ul>
+    </nav>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 col-lg-3">
+            <input type="text" class="form-control" placeholder="filter by user name">
         </div>
-        <div class="logoNav">
-            <a href="index.html" class="vertivalMid" id="app-name">OfekTwitter</a>
+        <div class="col-md-4 col-lg-4">
+            <button class="btn btn-primary">ok</button>
         </div>
     </div>
 
-    <div class="logoNav rightHeader">
-        <a class="vertivalMid" href="index.html">Sign in</a>
-    </div>
-    <div class="logoNav rightHeader">
-        <a class="vertivalMid" href="index.html">Sign up</a>
-    </div>
-    <div class="logoNav rightHeader">
-        <a class="vertivalMid" href="users.html">Users</a>
-    </div>
-</div>
+    <br/>
 
-<div class="users-body">
-    <div class="left-body">
-        <div class="filter-input">
-            <span>filter by</span>
-            <input type="text" placeholder="user name">
-            <button>ok</button>
-        </div>
+    <div class="row ">
+        <div class="col-lg-10 col-md-10">
+            <div class="row">
+                <div class="col-lg-2 col-md-2">
+                    <div class="thumbnail followers" align="center">
+                        <img src="images/useravatar.png">
+                        <div class="caption">
+                            <p>
+                                <button class="btn btn-primary">follow</button>
+                            </p>
+                            <P><span>Marty McFly</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <div class="thumbnail followers" align="center">
+                        <img src="images/useravatar.png">
+                        <div class="caption">
+                            <p>
+                                <button class="btn btn-primary">follow</button>
+                            </p>
+                            <P><span>Janis Joplin</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <div class="thumbnail followers" align="center">
+                        <img src="images/useravatar.png">
+                        <div class="caption">
+                            <p>
+                                <button class="btn btn-primary">follow</button>
+                            </p>
+                            <P><span>Albert Einstein</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <div class="thumbnail followers" align="center">
+                        <img src="images/useravatar.png">
+                        <div class="caption">
+                            <p>
+                                <button class="btn btn-primary">follow</button>
+                            </p>
+                            <P><span>Genghis Khan</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <div class="thumbnail followers" align="center">
+                        <img src="images/useravatar.png">
+                        <div class="caption">
+                            <p>
+                                <button class="btn btn-primary">unfollow</button>
+                            </p>
+                            <P><span>Dracula</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <div class="thumbnail followers" align="center">
+                        <img src="images/useravatar.png">
+                        <div class="caption">
+                            <p>
+                                <button class="btn btn-primary">follow</button>
+                            </p>
+                            <P><span>Forest Gump</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2 col-md-2">
+                    <div class="thumbnail followers" align="center">
+                        <img src="images/useravatar.png">
+                        <div class="caption">
+                            <p>
+                                <button class="btn btn-primary">follow</button>
+                            </p>
+                            <P><span>Caligula</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <div class="thumbnail followers" align="center">
+                        <img src="images/useravatar.png">
+                        <div class="caption">
+                            <p>
+                                <button class="btn btn-primary">follow</button>
+                            </p>
+                            <P><span>Winnie the Pooh</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <div class="thumbnail followers" align="center">
+                        <img src="images/useravatar.png">
+                        <div class="caption">
+                            <p>
+                                <button class="btn btn-primary">follow</button>
+                            </p>
+                            <P><span>Obama</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <div class="thumbnail followers" align="center">
+                        <img src="images/useravatar.png">
+                        <div class="caption">
+                            <p>
+                                <button class="btn btn-primary">unfollow</button>
+                            </p>
+                            <P><span>Henry the 8th</span></p>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="users-list">
-            <div class="user-box" align="center">
-                <div class="user-img">
-                    <img src="images/useravatar.png">
-                </div>
-                <div class="user-button">
-                    <button>follow</button>
-                </div>
-                <div class="user-name">
-                    <span>Marty McFly</span>
-                </div>
-            </div>
-            <div class="user-box" align="center">
-                <div class="user-img">
-                    <img src="images/useravatar.png">
-                </div>
-                <div class="user-button">
-                    <button>follow</button>
-                </div>
-                <div class="user-name">
-                    <span>Marty McFly</span>
-                </div>
-            </div>
-            <div class="user-box" align="center">
-                <div class="user-img">
-                    <img src="images/useravatar.png">
-                </div>
-                <div class="user-button">
-                    <button>follow</button>
-                </div>
-                <div class="user-name">
-                    <span>Marty McFly</span>
-                </div>
-            </div>
-            <div class="user-box" align="center">
-                <div class="user-img">
-                    <img src="images/useravatar.png">
-                </div>
-                <div class="user-button">
-                    <button>follow</button>
-                </div>
-                <div class="user-name">
-                    <span>Marty McFly</span>
-                </div>
-            </div>
-            <div class="user-box" align="center">
-                <div class="user-img">
-                    <img src="images/useravatar.png">
-                </div>
-                <div class="user-button">
-                    <button>follow</button>
-                </div>
-                <div class="user-name">
-                    <span>Marty McFly</span>
-                </div>
-            </div>
-            <div class="user-box" align="center">
-                <div class="user-img">
-                    <img src="images/useravatar.png">
-                </div>
-                <div class="user-button">
-                    <button>follow</button>
-                </div>
-                <div class="user-name">
-                    <span>Marty McFly</span>
-                </div>
-            </div>
-            <div class="user-box" align="center">
-                <div class="user-img">
-                    <img src="images/useravatar.png">
-                </div>
-                <div class="user-button">
-                    <button>follow</button>
-                </div>
-                <div class="user-name">
-                    <span>Marty McFly</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="following-box" align="center">
-            <span><h2>Following</h2></span>
-            <div class="user-box" align="center">
-                <div class="user-img">
-                    <img src="images/useravatar.png">
-                </div>
-                <div class="user-button">
-                    <button>unfollow</button>
-                </div>
-                <div class="user-name">
-                    <span>Marty McFly</span>
-                </div>
-            </div>
-            <div class="user-box" align="center">
-                <div class="user-img">
-                    <img src="images/useravatar.png">
-                </div>
-                <div class="user-button">
-                    <button>unfollow</button>
-                </div>
-                <div class="user-name">
-                    <span>Marty McFly</span>
-                </div>
             </div>
         </div>
+        <div class="col-lg-2 col-md-2">
+            <div id="xx" class="thumbnail primery-thumb" align="center">
 
+                <span><h2>Following</h2></span>
+                <div class="thumbnail my_thumb followers" align="center">
+                    <img src="images/useravatar.png">
+                    <div class="caption">
+                        <p>
+                            <button class="btn btn-primary">unfollow</button>
+                        </p>
+                        <P><span>Dracula</span></p>
+                    </div>
+                </div>
+                <div class="thumbnail my_thumb followers" align="center">
+                    <img src="images/useravatar.png">
+                    <div class="caption">
+                        <p>
+                            <button class="btn btn-primary">unfollow</button>
+                        </p>
+                        <P><span>Henry the 8th</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
 </div>
 
 </body>
