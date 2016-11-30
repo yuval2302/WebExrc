@@ -33,67 +33,18 @@
 
 <div class="container">
     <div class="row">
-        <textarea placeholder="tweet text..." rows="3" class="form-control"></textarea>
-            <button class="btn btn-primary pull-right">publish</button>
+        <textarea placeholder="tweet text..." rows="3" class="form-control" id="new-tweet-text"></textarea>
+            <button class="btn btn-primary pull-right" onclick="clickedOnPublish()">publish</button>
     </div>
 
     <section class="tweets-section">
         <div class="row">
-            <div class="col-lg-12 col-md-12">
-                <div class="media">
-                    <div class="media-left">
-                        <img class="media-object" src="images/useravatar.png">
-                    </div>
-                    <div class="media-body">
-                        <b class="media-heading">James Bond says:</b>
-                        <br/>
-                        <span>Blabla bla...</span>
-                    </div>
-                </div>
-                <div class="media">
-                    <div class="media-left">
-                        <img class="media-object" src="images/useravatar.png">
-                    </div>
-                    <div class="media-body">
-                        <b class="media-heading">James Bond says:</b>
-                        <br/>
-                        <span>Bond, James bond</span>
-                    </div>
-                </div>
-                <div class="media">
-                    <div class="media-left">
-                        <img class="media-object" src="images/useravatar.png">
-                    </div>
-                    <div class="media-body">
-                        <b class="media-heading">Albert Einstein says:</b>
-                        <br/>
-                        <span>E = mc^2</span>
-                    </div>
-                </div>
-                <div class="media">
-                    <div class="media-left">
-                        <img class="media-object" src="images/useravatar.png">
-                    </div>
-                    <div class="media-body">
-                        <b class="media-heading">Bill Gates says:</b>
-                        <br/>
-                        <span>I think 64 bytes should be enough for everyone</span>
-                    </div>
-                </div>
-                <div class="media">
-                    <div class="media-left">
-                        <img class="media-object" src="images/useravatar.png">
-                    </div>
-                    <div class="media-body">
-                        <b class="media-heading">Frodo says:</b>
-                        <br/>
-                        <span>My Precious</span>
-                    </div>
-                </div>
+            <div class="col-lg-12 col-md-12" id = "tweets-show">
             </div>
         </div>
-
     </section>
 </div>
+
+    <script src="JS/index.js"></script>
 </body>
 </html>
