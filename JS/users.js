@@ -79,29 +79,33 @@ var following = [
     }
 ];
 
+var filteredUserList = usersList;
 
-var userDiv = document.getElementById("users-list");
-var folowingDiv = document.getElementById("following-container");
-var filteredUserList = usersList
-printUsers(filteredUserList);
-printFollowingUsers();
+window.addEventListener('load', onPageLoad, false);
 
 function printUsers(usersList) {
+    //noinspection JSUnresolvedFunction
+    var docFrag = document.createDocumentFragment();
+    docFrag = "";
+    var userDiv = document.getElementById("users-list");
+
     userDiv.innerHTML = "";
-    for (curruser in usersList) {
-        var userId = usersList[curruser].id;
-        var isfollow = (usersList[curruser].isFollow) ? 'unfollow' : 'follow';
-        var colorAttr = usersList[curruser].isFollow ? 'btn-danger' : 'btn-primary';
-        userDiv.innerHTML += '<div class="col-lg-2 col-md-2">' +
+    for (curruser of usersList) {
+        var userId = curruser.id;
+        var isfollow = (curruser.isFollow) ? 'unfollow' : 'follow';
+        var colorAttr = curruser.isFollow ? 'btn-danger' : 'btn-primary';
+        docFrag += '<div class="col-lg-2 col-md-2" id = divUser' + userId + '>' +
             '<div class="thumbnail followers" align="center">' +
-            '<img src=' + usersList[curruser].img + '>' +
+            '<img src=' + curruser.img + '>' +
             '<div class="caption">' +
-            '<p><button  class="btn ' + colorAttr + ' " onclick="changeIsFollow(' + userId + ')"> ' + isfollow + '</button></p>' +
-        '<P><span>' + usersList[curruser].username + '</span></p> </div> </div> </div>'
+            '<p><button id = userId' + userId + ' class="btn ' + colorAttr + ' " onclick="changeIsFollow(' + userId + ')"> ' + isfollow + '</button></p>' +
+        '<P><span>' + curruser.username + '</span></p> </div> </div> </div>'
     }
+    userDiv.innerHTML = docFrag;
 }
 
 function printFollowingUsers() {
+    var folowingDiv = document.getElementById("following-container");
     folowingDiv.innerHTML = "";
     for(currFollowing in following) {
         var userId = following[currFollowing].id;
@@ -117,16 +121,17 @@ function printFollowingUsers() {
     }
 }
 
+
 function changeIsFollow(userId) {
     var currUser = usersList.filter(function (obj) {
         return obj.id === userId;
-    });
-    currUser[0].isFollow = !currUser[0].isFollow;
-    if(currUser[0].isFollow) {
-        following.push(currUser[0]);
+    })[0];
+
+    currUser.isFollow = !currUser.isFollow;
+    if(currUser.isFollow) {
+        following.push(currUser);
     }
     else {
-        //following.pop(currUser[0]);
         following = following.filter(function (obj) {
             return obj.id != userId;
         })
@@ -137,14 +142,34 @@ function changeIsFollow(userId) {
 
 function serachUser() {
     var search = document.getElementById("name-search");
+    usersList.forEach(function (obj) {
+        document.getElementById("divUser" + obj.id).classList.remove("hidden");
+    })
     filteredUserList = usersList.filter(function (obj) {
-        //TODO: check
-        return obj.username.includes(search);
+        return !(obj.username.includes(search.value));
+    }).forEach(function (obj) {
+        document.getElementById("divUser" + obj.id).classList.add("hidden");
     });
-    printUsers(filteredUserList);
 }
 
+function testFollow() {
+    var input = document.getElementById("userId2");
+    beginValue = input.value;
+    changeIsFollow(2);
+    var result = beginValue === input.value;
+    changeIsFollow(2);
+    return rescult;
+}
 
+function onPageLoad() {
+
+    printUsers(filteredUserList);
+    printFollowingUsers();
+
+    test_group("follow - unfollow test", function () {
+        assert(testFollow(), "press follow on button");
+    });
+}
 
 
 

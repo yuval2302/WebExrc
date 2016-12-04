@@ -7,6 +7,10 @@
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/testing.css">
+    <script type="text/javascript" src="JS/users.js"></script>
+    <script type="text/javascript" src="JS/OfekTestFramework.js"></script>
+
 
 </head>
 <body>
@@ -36,10 +40,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3 col-lg-3">
-            <input type="text" class="form-control" id = "name-search" placeholder="filter by user name">
+            <input type="text" class="form-control" id = "name-search" placeholder="filter by user name" onkeyup="serachUser()">
         </div>
         <div class="col-md-4 col-lg-4">
-            <button class="btn btn-primary" onclick="serachUser()">ok</button>
+            <button class="btn btn-primary" disabled>ok</button>
         </div>
     </div>
 
@@ -79,6 +83,6 @@
         </div>
     </div>
 </div>
-<script src="JS/users.js"></script>
+
 </body>
 </html>
