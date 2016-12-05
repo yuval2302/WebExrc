@@ -11,44 +11,51 @@ var tweets = [
 
 window.addEventListener('load', onPageLoad, false);
 
-function printTweets() {
-    var tweetDiv = document.getElementById("tweets-show");
-    var docFrag = document.createDocumentFragment();
 
-    docFrag = "";
-    for (currTweet in tweets) {
-        var textNode = document.createTextNode("");
-        //TODO: this !
-        textNode.appendData(tweets[currTweet].text);
-        docFrag +=
-            '<div class="media">' +
-            '<div class="media-left">' +
-            '<img class="media-object" src="images/useravatar.png">' +
-            '</div>' +
-            '<div class="media-body">' +
-            '<b class="media-heading">'+ tweets[currTweet].username +' says:</b>'+
-            '<br/>'+
-            '<span>' + textNode.value + '</span>' +
-            '</div>' +
-            '</div>';
+function printTweets() {
+    var allTweets = "";
+    tweetDiv.empty();
+    for (currTweet of tweets) {
+        allTweets += addTweetDiv(currTweet);
     }
-    tweetDiv.innerHTML = docFrag;
+
+    tweetDiv.print(allTweets);
 }
 
 function clickedOnPublish() {
-    var newTweet = document.getElementById("new-tweet-text").value;
+    var textDiv = $("#new-tweet-text");
+    var newTweet = textDiv.value().replace(/[<]/g, '&lt').replace(/[>]/g, '&gt');
+    textDiv.value("");
     if (newTweet !== "") {
-        tweets.push({
+        var tweet = {
             username: "orenshlufluf",
             text: newTweet
-        });
-        printTweets();
+        };
+        tweets.push(tweet);
+        tweetDiv.print(addTweetDiv(tweet));
     }
 }
 
+function addTweetDiv(currTweet) {
+    var textNode = document.createTextNode("");
+    textNode.appendData(currTweet.text);
+    return '<div class="media">' +
+        '<div class="media-left">' +
+        '<img class="media-object" src="images/useravatar.png">' +
+        '</div>' +
+        '<div class="media-body">' +
+        '<b class="media-heading">'+ currTweet.username +' says:</b>'+
+        '<br/>'+
+        '<span>' + textNode.data + '</span>' +
+        '</div>' +
+        '</div>';
+}
+
+
+
 function testPublish() {
     var input  = document.getElementById("new-tweet-text");
-    input.value = "testing";
+    input.value = "testingsdfgdefr";
     clickedOnPublish();
     var newTweets = tweets.filter(function (item) {
         return item.text != "testing";
@@ -65,17 +72,17 @@ function testNullTweet() {
     var newTweets = tweets.filter(function (item) {
         return item.text != "";
     });
-    var result = newTweets.length == tweets.length;
+    var result = newTweets.length === tweets.length;
     tweets = newTweets;
     return result;
 }
 
 function onPageLoad() {
-
+    tweetDiv = $("#tweets-show");
     test_group("tweet adding", function () {
         assert(testPublish(), "adding tweet test");
         assert(testNullTweet(), "adding null tweet test");
     });
-
+    tweetDiv = $("#tweets-show");
     printTweets();
 }

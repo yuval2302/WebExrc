@@ -84,40 +84,37 @@ var filteredUserList = usersList;
 window.addEventListener('load', onPageLoad, false);
 
 function printUsers(usersList) {
-    //noinspection JSUnresolvedFunction
-    var docFrag = document.createDocumentFragment();
-    docFrag = "";
-    var userDiv = document.getElementById("users-list");
+    var userDiv = $("#users-list");
 
-    userDiv.innerHTML = "";
+    userDiv.empty();
     for (curruser of usersList) {
         var userId = curruser.id;
         var isfollow = (curruser.isFollow) ? 'unfollow' : 'follow';
         var colorAttr = curruser.isFollow ? 'btn-danger' : 'btn-primary';
-        docFrag += '<div class="col-lg-2 col-md-2" id = divUser' + userId + '>' +
+        userDiv.print('<div class="col-lg-2 col-md-2" id = divUser' + userId + '>' +
             '<div class="thumbnail followers" align="center">' +
             '<img src=' + curruser.img + '>' +
             '<div class="caption">' +
             '<p><button id = userId' + userId + ' class="btn ' + colorAttr + ' " onclick="changeIsFollow(' + userId + ')"> ' + isfollow + '</button></p>' +
-        '<P><span>' + curruser.username + '</span></p> </div> </div> </div>'
+        '<P><span>' + curruser.username + '</span></p> </div> </div> </div>');
     }
-    userDiv.innerHTML = docFrag;
 }
 
+
 function printFollowingUsers() {
-    var folowingDiv = document.getElementById("following-container");
-    folowingDiv.innerHTML = "";
+    var folowingDiv = $("#following-container");
+    folowingDiv.empty()
     for(currFollowing in following) {
         var userId = following[currFollowing].id;
         var isfollow = (following[currFollowing].isFollow) ? 'unfollow' : 'follow';
         var colorAttr = following[currFollowing].isFollow ? 'btn-danger' : 'btn-primary';
-        folowingDiv.innerHTML += '<div class="thumbnail my_thumb followers" align="center">' +
+        folowingDiv.print('<div class="thumbnail my_thumb followers" align="center">' +
             '<img src= ' + following[currFollowing].img + '>' +
             '<div class="caption">' +
             '<p><button class="btn ' + colorAttr + ' " onclick="changeIsFollow(' + userId + ')"> ' + isfollow + '</button></p>' +
             '<P><span>' + following[currFollowing].username + '</span></p>' +
             '</div>' +
-            '</div>';
+            '</div>');
     }
 }
 
@@ -141,24 +138,24 @@ function changeIsFollow(userId) {
 }
 
 function serachUser() {
-    var search = document.getElementById("name-search");
+    var search = $("#name-search");
     usersList.forEach(function (obj) {
-        document.getElementById("divUser" + obj.id).classList.remove("hidden");
-    })
+        $("#divUser" + obj.id).removeClass("hidden");
+    });
     filteredUserList = usersList.filter(function (obj) {
-        return !(obj.username.includes(search.value));
+        return !(obj.username.includes(search.value()));
     }).forEach(function (obj) {
-        document.getElementById("divUser" + obj.id).classList.add("hidden");
+        $("#divUser" + obj.id).addClass("hidden");
     });
 }
 
 function testFollow() {
-    var input = document.getElementById("userId2");
+    var input = $("#userId2");
     beginValue = input.value;
     changeIsFollow(2);
     var result = beginValue === input.value;
     changeIsFollow(2);
-    return rescult;
+    return result;
 }
 
 function onPageLoad() {
