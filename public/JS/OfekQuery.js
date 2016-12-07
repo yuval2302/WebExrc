@@ -22,7 +22,7 @@ function $(selector) {
                     newElements = currElement.getElementsByClassName(name);
                 }
                 else {
-                    newElements = currElement.getElementsByTagName(currSelector);
+                    newElements = currElement.getElementsByTagName-(currSelector);
                 }
                 addCollection(newResult, newElements);
             }

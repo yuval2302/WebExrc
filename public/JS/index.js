@@ -3,11 +3,7 @@
  */
 
 
-var tweets = [
-    {username: 'Bobo', text: 'hello followers!'},
-    {username: 'Elvis', text: 'this exercise is really easy!'},
-    {username: 'Mimi', text: 'I want to go to sleep'}
-];
+var tweets = [];
 
 window.addEventListener('load', onPageLoad, false);
 
@@ -41,7 +37,7 @@ function addTweetDiv(currTweet) {
     textNode.appendData(currTweet.text);
     return '<div class="media">' +
         '<div class="media-left">' +
-        '<img class="media-object" src="images/useravatar.png">' +
+        '<img class="media-object" src="../images/useravatar.png">' +
         '</div>' +
         '<div class="media-body">' +
         '<b class="media-heading">'+ currTweet.username +' says:</b>'+
@@ -78,11 +74,44 @@ function testNullTweet() {
 }
 
 function onPageLoad() {
+
     tweetDiv = $("#tweets-show");
+    var promises = [];
     test_group("tweet adding", function () {
         assert(testPublish(), "adding tweet test");
         assert(testNullTweet(), "adding null tweet test");
     });
+
+    axios.get("http://10.103.50.193:8080/users/10c06b27-d8ee-4435-9cee-0a2a838ca14a")
+        .then(function (response) {
+            myRandomUesr = response.data[0];
+            axios.get("http://10.103.50.193:8080/tweets").then(function (tweetsObject) {
+                tweets = tweetsObject.data;
+                tweets = tweets.filter(function (tweet) {
+                    var isFollowing = false
+                    for (followingUsers of myRandomUesr.following){
+                        if(followingUsers === tweet.user){
+                            isFollowing = true;
+                            break;
+                        }
+                    }
+                    return isFollowing;
+                })
+            }).then(function () {
+                tweets.forEach(function (tweet) {
+                    promises.push(axios.get("http://10.103.50.193:8080/users/" + tweet.user).then(function (user) {
+                        tweet.username = user.data[0].username;
+                    }));
+                })
+            }).then(function () {
+                axios.all(promises)
+                    .then(function () {
+                        printTweets();
+                    });
+            });
+        });
+
+
     tweetDiv = $("#tweets-show");
     printTweets();
 }
