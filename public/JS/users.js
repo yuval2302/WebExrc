@@ -3,9 +3,9 @@
  * Created by Jbt on 11/30/2016.
  */
 
-var serverPort = "http://10.103.50.193:8080";
+var serverPort = "http://10.103.50.252:8000";
 var usersList = [];
-var myRandomUser;
+var myRandomUesr;
 var following = [];
 var filteredUserList;
 
@@ -48,21 +48,25 @@ function printFollowingUsers() {
 
 
 function changeIsFollow(userId) {
+
     var currUser = usersList.filter(function (obj) {
         return obj._id === userId;
     })[0];
 
-    currUser.isFollow = !currUser.isFollow;
-    if(currUser.isFollow) {
-        following.push(currUser);
-    }
-    else {
-        following = following.filter(function (obj) {
-            return obj._id != userId;
-        })
-    }
-    printUsers(filteredUserList);
-    printFollowingUsers();
+    axios.put(serverPort + '/users/' + myRandomUesr._id, currUser).then( function (response) {
+        currUser.isFollow = !currUser.isFollow;
+        if(currUser.isFollow) {
+            following.push(currUser);
+        }
+        else {
+            following = following.filter(function (obj) {
+                return obj._id != userId;
+            })
+        }
+        printUsers(filteredUserList);
+        printFollowingUsers();
+    });
+
 }
 
 function serachUser() {
@@ -98,12 +102,14 @@ function onPageLoad() {
     axios.get(serverPort + "/users/10c06b27-d8ee-4435-9cee-0a2a838ca14a")
         .then(function (response) {
             myRandomUesr = response.data[0];
-
         })
         .then(function () {
         axios.get(serverPort + "/users")
             .then(function (response) {
-                usersList = response.data;
+
+                usersList = response.data.filter(function(user) {
+                    return user._id !== myRandomUesr._id;
+                });
                 filteredUserList = usersList;
             }).then(function () {
             following = usersList.filter(function (user) {
