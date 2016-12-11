@@ -1,5 +1,5 @@
 var dataManager = require('./dataManager');
-var session = require('express-session')
+var session = require('express-session');
 var users = [];
 dataManager.getUsers().then(function (response) {
     users = response;
@@ -36,6 +36,8 @@ function addTweetsRouts(app) {
                     console.log(myUser.username + " unfollows" + userToChange.username);
                     myUser.following.splice(myUser.following.indexOf(userToChange._id), 1);
                 }
+
+                req.session.loginUser = myUser;
             }
         });
         res.send();
@@ -45,18 +47,18 @@ function addTweetsRouts(app) {
        var username = req.body.username;
        var password = req.body.password;
        var user = users.filter(function (currUser) {
-           return (currUser.username === username && currUser.password);
+           return (currUser.username === username && currUser.password === password);
        });
        if (user.length > 0) {
            req.session.loginUser = user[0];
            res.send(user[0]);
        } else {
-           res.error("No user found")
+           res.sendStatus(500);
        }
     });
 
     app.get('/logged', function (req, res) {
-       res.send(req.session.loginUser);
+        res.send(req.session.loginUser);
     });
 
     app.post('/users', function (req, res) {
@@ -67,15 +69,15 @@ function addTweetsRouts(app) {
             following: []
         };
         users.push(newUser);
+        req.session.loginUser = newUser;
         dataManager.setUsers(users);
-        console.log("here");
         res.end();
     })
 }
 
 var currId = 1;
 var getNextId = function () {
-  return currId++;
+  return (currId++).toString();
 };
 
 module.exports = {addTweetsRouts : addTweetsRouts};

@@ -3,6 +3,8 @@ var app = express();
 var path = require("path");
 var bodyParser = require("body-parser");
 var fs = require('fs');
+var session = require('express-session');
+
 var tweetsModule = require('./tweets');
 var usersModule = require('./users');
 
@@ -15,6 +17,12 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-with, Content-Type, Accept");
     next();
 });
+
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
+}));
 
 app.use(bodyParser.json());
 app.use('/', express.static(path.resolve('../public/')));

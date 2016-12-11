@@ -3,9 +3,8 @@
  * Created by Jbt on 11/30/2016.
  */
 
-var serverPort = "http://10.103.50.252:8000";
 var usersList = [];
-var myRandomUesr;
+var loggedUser;
 var following = [];
 var filteredUserList;
 
@@ -53,7 +52,7 @@ function changeIsFollow(userId) {
         return obj._id === userId;
     })[0];
 
-    axios.put(serverPort + '/users/' + myRandomUesr._id, currUser).then( function (response) {
+    axios.put('/users/' + loggedUser._id, currUser).then( function (response) {
         currUser.isFollow = !currUser.isFollow;
         if(currUser.isFollow) {
             following.push(currUser);
@@ -99,22 +98,26 @@ function serachUser() {
 
 function onPageLoad() {
 
-    axios.get(serverPort + "/users/10c06b27-d8ee-4435-9cee-0a2a838ca14a")
+    axios.get("/logged")
         .then(function (response) {
-            myRandomUesr = response.data[0];
+            if (response.data === "") {
+                window.location = "/html/signIn.html";
+            } else {
+                loggedUser = response.data;
+            }
         })
         .then(function () {
-        axios.get(serverPort + "/users")
+        axios.get("/users")
             .then(function (response) {
 
                 usersList = response.data.filter(function(user) {
-                    return user._id !== myRandomUesr._id;
+                    return user._id !== loggedUser._id;
                 });
                 filteredUserList = usersList;
             }).then(function () {
             following = usersList.filter(function (user) {
                 user.isFollow = false;
-                for (currFollow of myRandomUesr.following){
+                for (currFollow of loggedUser.following){
                     if(currFollow === user._id) {
                         user.isFollow = true;
                         break;

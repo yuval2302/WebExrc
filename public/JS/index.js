@@ -4,8 +4,7 @@
 
 
 var tweets = [];
-serverPort = "http://10.103.50.252:8000";
-var myRandomUesr;
+var loggedUser;
 window.addEventListener('load', onPageLoad, false);
 
 
@@ -25,12 +24,12 @@ function clickedOnPublish() {
     textDiv.value("");
     if (newTweet !== "") {
         axios.post('/tweets', {
-            user: myRandomUesr._id,
+            user: loggedUser._id,
             text: newTweet
         });
 
         var tweet = {
-            username: myRandomUesr.username,
+            username: loggedUser.username,
             text: newTweet
         };
         tweets.push(tweet);
@@ -85,29 +84,16 @@ function onPageLoad() {
     //     assert(testNullTweet(), "adding null tweet test");
     // });
 
-    axios.get(serverPort + "/users/10c06b27-d8ee-4435-9cee-0a2a838ca14a").then(function (response) {
-        myRandomUesr = response.data[0];
-        axios.get(serverPort + "/tweets").then(function (tweetsObject) {
-            tweets = tweetsObject.data;
-            tweets = tweets.filter(function (tweet) {
-                if (tweet.user === myRandomUesr._id) {
-                    return true;
-                }
-                var isFollowing = false;
-                for (followingUsers of myRandomUesr.following) {
-                    if (followingUsers === tweet.user) {
-                        isFollowing = true;
-                        break;
-                    }
-                }
-                return isFollowing;
-            });
+    axios.get("/logged").then(function (response) {
+        if (response.data === "") {
+            window.location = "/html/signIn.html";
+        } else {
+            loggedUser = response.data;
+        }
+        axios.get("/tweets").then(function (tweetsObject) {
+            tweets = getAllFollowedTweets(tweetsObject);
         }).then(function () {
-            tweets.forEach(function (tweet) {
-                promises.push(axios.get(serverPort + "/users/" + tweet.user).then(function (user) {
-                    tweet.username = user.data[0].username;
-                }));
-            });
+            promises = findsAllTheUsernames(tweets);
         }).then(function () {
             axios.all(promises).then(function () {
                 printTweets();
@@ -119,30 +105,33 @@ function onPageLoad() {
     printTweets();
 }
 
+function isUserFollowId(user, userId) {
+    return user.following.indexOf(userId) !== -1
+}
 
-var getAllFollowedTweets = function () {
+
+var getAllFollowedTweets = function (tweetsObject) {
     tweets = tweetsObject.data;
     tweets = tweets.filter(function (tweet) {
-        if (tweet.user === myRandomUesr._id) {
+        if (tweet.user === loggedUser._id) {
             return true;
         }
-        var isFollowing = false;
-        for (followingUsers of myRandomUesr.following) {
-            if (followingUsers === tweet.user) {
-                isFollowing = true;
-                break;
-            }
-        }
-        return isFollowing;
-    })
+
+        return isUserFollowId(loggedUser, tweet.user);
+    });
+    return tweets;
 };
 
-var findsAllTheUsernames = function () {
+var findsAllTheUsernames = function (tweets) {
+    var promises = [];
+
     tweets.forEach(function (tweet) {
-        promises.push(axios.get(serverPort + "/users/" + tweet.user).then(function (user) {
+        promises.push(axios.get("/users/" + tweet.user).then(function (user) {
             tweet.username = user.data[0].username;
         }));
-    })
+    });
+
+    return promises;
 };
 
 var printAllTweets = function () {
@@ -151,3 +140,22 @@ var printAllTweets = function () {
             printTweets();
         });
 }
+
+describe("isUserFollowId", function() {
+
+    it("not following ", function() {
+        var tempUser = {_id:"1", username: "yuvi", password: "1234", following:[5,6,7]};
+        expect(isUserFollowId(tempUser, "9")).toBe(false);
+    });
+
+    it("multiple following", function() {
+        var tempUser = {_id:"1", username: "yuvi", password: "1234", following:[5,6,7]};
+        expect(isUserFollowId(tempUser, "6")).toBe(false);
+    });
+
+    it("single follow", function() {
+        var tempUser = {_id:"1", username: "yuvi", password: "1234", following:[5]};
+        expect(isUserFollowId(tempUser, "5")).toBe(false);
+    });
+});
+

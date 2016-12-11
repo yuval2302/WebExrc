@@ -7,13 +7,11 @@ function signIn(){
         password: password
     };
 
-    axios.get('/login', userToAdd).then(function (response) {
-        if(response.status != 200) {
-            window.location = "../html/signIn.html"
-            alert("wrong username or password");
-        } else {
-            window.location = "/";
-        }
+    axios.post('/login', userToCheck).then(function (response) {
+        window.location = "/";
+    }).catch(function (response) {
+        console.log("wrong username or password");
+        alert("wrong username or password");
     });
 }
 
