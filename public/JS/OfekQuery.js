@@ -22,7 +22,7 @@ function $(selector) {
                     newElements = currElement.getElementsByClassName(name);
                 }
                 else {
-                    newElements = currElement.getElementsByTagName-(currSelector);
+                    newElements = currElement.getElementsByTagName(currSelector);
                 }
                 addCollection(newResult, newElements);
             }
@@ -37,7 +37,7 @@ var addCollection = function (collection, colToAdd) {
     for (element of colToAdd) {
         collection.push(element);
     }
-}
+};
 
 OfekQuery.prototype.addClass = function (className) {
     for (object of this.objects) {
